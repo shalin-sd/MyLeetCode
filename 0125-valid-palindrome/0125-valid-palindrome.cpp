@@ -2,14 +2,20 @@ class Solution {
 public:
     bool isPalindrome(string s) {
         int n=s.size();
-       for(int i=0,j=n-1;i<j;i++,j--)
+        string t="";
+       for(int i=0;i<n;i++)
        {
-           while(isalnum(s[i])==false && i<j)i++;
-           while(isalnum(s[j])==false && i<j)j--;
-           if(toupper(s[i])!= toupper(s[j])) return false;
+           if(isalnum(s[i]))
+           {
+               s[i]=tolower(s[i]);
+               t+=s[i];
            }
-           
-        return true;              
 } 
-    
+        s=t;
+        reverse(t.begin(),t.end());
+        if(s==t)
+            return true;
+        else
+            return false;
+    }
 };
