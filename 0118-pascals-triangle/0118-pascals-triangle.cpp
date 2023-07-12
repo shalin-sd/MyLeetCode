@@ -1,15 +1,44 @@
 class Solution {
 public:
-    vector<vector<int>> generate(int numRows) {
-    vector<vector<int>>row(numRows);
-        for(int i=0;i<numRows;i++){
-            row[i].resize(i+1);
-            row[i][0]=row[i][i]=1;
-            
-            for(int j=1;j<i;j++)
-            row[i][j]=row[i-1][j-1]+row[i-1][j];
+    vector<vector<int>> generate(int n) {
         
+        vector<vector<int>> ans;
+        if(n==1)
+        {
+            return {{1}};
         }
-        return row;
+        
+       
+         vector<int> t;
+        for(int i=0; i<n; i++) // 1
+        {
+            if(i==0)
+            t.push_back(1); //1
+            for(int j=0; j<i; j++)
+            {
+                if(j==0)
+                {
+                    t.push_back(1) ;
+                }
+                
+                else if(j>0)
+                {
+                    t.push_back(ans[i-1][j-1] + ans[i-1][j]);
+                }
+                
+        
+                
+            }
+            
+            if(i>0)
+            t.push_back(1);
+            // cout<<endl;
+            ans.push_back(t);
+            t.clear();
+            
+        }
+        
+        return ans;
+        
     }
 };
